@@ -1,0 +1,34 @@
+必要ライブラリ
+-tweepy
+  https://github.com/tweepy/tweepy/
+-matplotlib
+  http://matplotlib.sourceforge.net/
+-networkx
+  http://networkx.lanl.gov/
+
+構成ファイル
+-twToken.py
+  Twitter APIにアクセスするためのconsumer key, cousumer secret, access token key, access token secretを格納
+トークンの取り方がよくわからない！みたいな人はこのへんを参考に
+http://musilog.net/webdesign/my-works/twitter-oauth-wp-to-twitter.php
+
+-twitterID.py
+$ python twitterID.py [connpass|atnd] [event_id]
+と、サービス名（connpassかatnd）とevent_idを指定して実行してください。
+参加者のTwitterNameを取得して、
+
+[connpass|atnd]_[event_id]_nodes.pkl
+
+に保存します。
+
+-relations.py
+$ python relations.py [さっき作ったpklファイル名]
+で実行するとTwitter APIにアクセスして、参加者同士のフォロー関係を取得し、
+
+[connpass|atnd]_[event_id]_edges.pkl
+
+に保存します。参加人数がめっちゃ多かったりするとAPI制限に引っかかって途中で終わったりするので、その場合は時間を置いて再度実行してください。
+
+-drawNetwork.py
+$ python drawNetwork.py [さっき作ったpklファイル名(nodesでもedgesでもどっちでも)]
+で実行すると、ネットワークを描画します。
